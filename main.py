@@ -12,7 +12,8 @@ app = FastAPI()
 
 @app.get("/data", response_model=List[schemas.Data] )
 def test_post(db: Session = Depends(get_db)):
-    post = db.query(models.Data).all()
+    #post = db.query(models.Data).all()
+    post = db.query(models.Data).order_by(models.Data.id.desc()).all()
     return post
 
 @app.get("/data/last" )
