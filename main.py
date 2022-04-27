@@ -16,8 +16,8 @@ def test_post(db: Session = Depends(get_db)):
     post = db.query(models.Data).order_by(models.Data.id.desc()).all()
     return post
 
-@app.get("/data/last" )
+@app.get("/data/last" , response_model=schemas.Data )
 def test_post(db: Session = Depends(get_db)):
     post = db.query(models.Data).order_by(models.Data.id.desc()).first()
     #post = db.query(models.Data).first()
-    return {post}
+    return post
